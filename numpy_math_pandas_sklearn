@@ -1,0 +1,32 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import sklearn
+
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix, accuracy_score,classification_report
+from sklearn.naive_bayes import GaussianNB
+from sklearn.datasets import load_iris
+
+X,y=load_iris(return_X_y=True)
+
+pd.DataFrame(X)
+
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.40)
+
+classifier=GaussianNB()
+classifier.fit(X_train,y_train)
+y_pred=classifier.predict(X_test)
+
+result=confusion_matrix(y_test,y_pred)
+print("confusion_matrix")
+print(result)
+
+result2=classification_report(y_test,y_pred)
+print("classification_report")
+print(result2)
+
+result3=accuracy_score(y_test,y_pred)
+print("accuracy")
+print(result3)
+
